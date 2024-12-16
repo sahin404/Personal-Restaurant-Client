@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      overflowX: ['hidden'],
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef
