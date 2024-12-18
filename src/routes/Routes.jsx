@@ -2,11 +2,11 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 import Main from "../Layout/Main";
-import Home from "../pages/Home/Home";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Menu from "../pages/Menu/Menu";
 import Shop from "../pages/Shop/Shop";
+import Home from "../pages/Home/Home/Home";
 
 
 export const router = createBrowserRouter([

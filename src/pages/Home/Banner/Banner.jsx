@@ -8,7 +8,7 @@ import img5 from '../../../assets/home/05.png';
 import img6 from '../../../assets/home/06.png';
 const Banner = () => {
     return (
-        <div className="">
+        <div className="max-w-7xl">
             <Carousel>
                 <div>
                     <img src={img1} />
