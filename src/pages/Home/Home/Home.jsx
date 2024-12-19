@@ -4,6 +4,7 @@ import CategorySwiper from "../CategorySwiper/CategorySwiper"
 import ChefRecomends from "../ChefRecomends/ChefRecomends"
 import ListFromMenu from "../ListFromMenu/ListFromMenu"
 import NumberPane from "../NumberPane/NumberPane"
+import Review from "../Review/Review"
 import SecondBanner from "../SecondBanner/SecondBanner"
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <ListFromMenu></ListFromMenu>
         <NumberPane></NumberPane>
         <ChefRecomends></ChefRecomends>
+        <Review></Review>
     </div>
   )
 }
