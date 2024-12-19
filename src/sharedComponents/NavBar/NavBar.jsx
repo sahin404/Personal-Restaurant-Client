@@ -10,8 +10,8 @@ const NavBar = () => {
         <li><NavLink to="/shop">Our Shop</NavLink></li>
     </>
     return (
-        <div>
-            <div className="max-w-7xl mx-auto fixed navbar z-10 bg-opacity-50 bg-[#111827] text-white">
+        <div className="z-20">
+            <div className=" max-w-7xl mx-auto fixed navbar z-10 bg-opacity-50 bg-[#111827] text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,7 +39,7 @@ const NavBar = () => {
                     <a className="flex gap-3 items-center pl-5">
                         <img src={logo} className="h-12" />
                         <div>
-                        <h1 className="text-xl">Bistro</h1>
+                        <h1 className="text-xl">Pizza</h1>
                         <h1>Restaurant</h1>
                         </div>
                         
