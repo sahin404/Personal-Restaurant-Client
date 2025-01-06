@@ -4,10 +4,12 @@ import logo from '../../assets/logo.png'
 const NavBar = () => {
     const menuItems = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/contact">Contact Us</NavLink></li>
-        <li><NavLink to="/dashboard">Dshboard</NavLink></li>
         <li><NavLink to="/menu">Our Menu</NavLink></li>
         <li><NavLink to="/shop">Our Shop</NavLink></li>
+        <li><NavLink to="/contact">Contact Us</NavLink></li>
+        <li><NavLink to="/dashboard">Dshboard</NavLink></li>
+
+
     </>
     return (
         <div className="z-20">

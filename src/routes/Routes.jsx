@@ -4,9 +4,10 @@ import {
 import Main from "../Layout/Main";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import Menu from "../pages/Menu/Menu";
+
 import Shop from "../pages/Shop/Shop";
 import Home from "../pages/Home/Home/Home";
+import Menu from "../pages/Menu/Menu/Menu";
 
 
 export const router = createBrowserRouter([

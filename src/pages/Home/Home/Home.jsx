@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet-async"
 import Banner from "../Banner/Banner"
 import CategorySwiper from "../CategorySwiper/CategorySwiper"
 import ChefRecomends from "../ChefRecomends/ChefRecomends"
@@ -10,13 +11,16 @@ import SecondBanner from "../SecondBanner/SecondBanner"
 const Home = () => {
   return (
     <div>
-        <Banner></Banner>
-        <CategorySwiper></CategorySwiper>
-        <SecondBanner></SecondBanner>
-        <ListFromMenu></ListFromMenu>
-        <NumberPane></NumberPane>
-        <ChefRecomends></ChefRecomends>
-        <Review></Review>
+      <Helmet>
+        <title>Pizzarant | Home</title>
+      </Helmet>
+      <Banner></Banner>
+      <CategorySwiper></CategorySwiper>
+      <SecondBanner></SecondBanner>
+      <ListFromMenu></ListFromMenu>
+      <NumberPane></NumberPane>
+      <ChefRecomends></ChefRecomends>
+      <Review></Review>
     </div>
   )
 }
