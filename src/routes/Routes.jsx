@@ -8,6 +8,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Home from "../pages/Home/Home/Home";
 import Menu from "../pages/Menu/Menu/Menu";
 import Shop from "../pages/Shop/Shop/Shop";
+import SignIn from "../pages/SignIn/SignIn";
+import SignUp from "../pages/SignUp/SignUp";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
             {
                 path: 'shop/:category',
                 element: <Shop />
+            },
+            {
+                path:'/login',
+                element:<SignIn></SignIn>
+            },
+            {
+                path:'/signup',
+                element:<SignUp></SignUp>
             }
         ]
     },
