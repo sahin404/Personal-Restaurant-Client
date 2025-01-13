@@ -1,22 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from '../../assets/others/authentication2.png';
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const SignIn = () => {
     const {signIn} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+    const [error,setError] = useState("");
+
     const handleForm = (e) => {
         e.preventDefault();
         const email = e.target.user_email.value;
         const password = e.target.user_password.value;
         // console.log(email,password);
+        setError("");
         signIn(email,password)
         .then(()=>{
-            console.log('successfully logged in.');
+            navigate(from, {replace:true});
         })
         .catch(()=>{
-            console.log('an error occured');
+            setError("Invalid Username or Password. Try Again!");
         })
     };
 
@@ -62,6 +68,11 @@ const SignIn = () => {
                                     <a href="#" className="label-text-alt link link-hover">
                                         Forgot password?
                                     </a>
+                                </label>
+                                <label className="text-red-600 text-sm">
+                                    {
+                                        error && <h1>{error}</h1>
+                                    }
                                 </label>
                             </div>
 

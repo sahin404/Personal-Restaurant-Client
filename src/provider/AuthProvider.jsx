@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react"
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth"
 import { app } from "../firebase/firebase.config";
 
 const auth = getAuth(app);
@@ -13,39 +13,45 @@ const AuthProvider = ({ children }) => {
 
 
 
-    const signUp=(email,password)=>{
+    const signUp = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth,email,password);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const signIn=(email,password)=>{
+    const signIn = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth,email,password);
+        return signInWithEmailAndPassword(auth, email, password);
 
     }
 
-    const logOut=()=>{
+    const logOut = () => {
         setLoading(true);
         return signOut(auth);
     }
 
+    const updatePro = (name) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+        })
+    }
 
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
+
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            if(currentUser){
+            if (currentUser) {
                 setLoading(false);
             }
-            // console.log('curreent',currentUser);
+            console.log('curreent',currentUser);
         })
-        return ()=>{
+        return () => {
             return unSubscribe();
         }
-    },[])
+    }, [])
 
 
     const info = {
-        user, loading, signIn,logOut, signUp
+        user, loading, signIn, logOut, signUp, updatePro
     }
     return (
         <AuthContext.Provider value={info}>
