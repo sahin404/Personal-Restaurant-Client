@@ -6,7 +6,7 @@ const MenuCategory = ({ categories, title}) => {
     return (
         <div>
 
-            <div className="gap-5 grid grid-cols-1 lg:grid-cols-2 md:gap-10 p-5 lg:p-10">
+            <div className="gap-5 grid grid-cols-1 lg:grid-cols-3 md:gap-10 p-5 lg:p-10">
                 {
                     categories.slice(0, 6).map(category => <ShowList
                         menu={category}

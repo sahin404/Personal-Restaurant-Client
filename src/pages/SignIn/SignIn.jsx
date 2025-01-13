@@ -3,6 +3,7 @@ import loginImg from '../../assets/others/authentication2.png';
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
     const {signIn} = useContext(AuthContext);
@@ -23,11 +24,16 @@ const SignIn = () => {
         })
         .catch(()=>{
             setError("Invalid Username or Password. Try Again!");
+            e.target.reset();
         })
     };
 
     return (
-        <div className="hero bg-base-200 py-10 rounded-lg min-h-screen">
+       <div>
+        <Helmet>
+            <title>Pizzarant | Login</title>
+        </Helmet>
+         <div className="hero bg-base-200 py-10 rounded-lg min-h-screen">
             <div className="hero-content flex flex-col lg:flex-row gap-8 lg:gap-10 items-center bg-base-300 p-16 shadow-2xl shadow-black">
                 {/* Left Section: Image */}
                 <div className="w-full lg:w-1/2">
@@ -106,6 +112,7 @@ const SignIn = () => {
                 </div>
             </div>
         </div>
+       </div>
     );
 };
 

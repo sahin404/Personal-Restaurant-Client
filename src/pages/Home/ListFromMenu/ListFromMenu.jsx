@@ -4,20 +4,20 @@ import Title from "../../../sharedComponents/CategoryTitle/Title";
 import ShowList from "./ShowList";
 
 const ListFromMenu = () => {
-   const [menu] = useMenu();
-   const popularMenu = menu.filter(temp=>temp.category==='popular');
+    const [menu] = useMenu();
+    const popularMenu = menu.filter(temp => temp.category === 'popular');
     return (
         <div className="my-10">
             <Title
                 h1="---Check it out---"
                 h2="FROM OUR MENU"
             ></Title>
-            <div className="gap-5 grid grid-cols-1 lg:grid-cols-2 md:gap-10 p-5 lg:p-10">
+            <div className="gap-5 grid grid-cols-1 lg:grid-cols-3 md:gap-10 p-5 lg:p-10">
                 {
-                   popularMenu.slice(0, 6).map(menu =><ShowList
-                    key={menu._id}
-                    menu={menu}
-                   ></ShowList> )
+                    popularMenu.slice(0, 6).map(menu => <ShowList
+                        menu={menu}
+                        key={menu._id}
+                    ></ShowList>)
                 }
             </div>
             <div className="flex justify-center">
