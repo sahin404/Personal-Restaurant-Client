@@ -3,9 +3,11 @@ import logo from '../../assets/logo.png'
 import { useContext } from "react"
 import { AuthContext } from "../../provider/AuthProvider"
 import { IoCartOutline } from "react-icons/io5"
+import useCarts from "../../hoooks/useCarts/useCarts"
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCarts(); 
     const handleLogout = () => {
         logOut();
     }
@@ -17,7 +19,7 @@ const NavBar = () => {
             <li><NavLink to="/banner">
                 <div className="relative w-fit">
                     <IoCartOutline className="text-3xl" />
-                    <span className="absolute -right-1 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-center text-[10px] text-white">12</span>
+                    <span className="absolute -right-1 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-center text-[10px] text-white">{cart.length}</span>
                 </div>
             </NavLink></li>
             <li className="text-xl bg-orange-500 p-2 rounded-xl">{user?.displayName}</li>

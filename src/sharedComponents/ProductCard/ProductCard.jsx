@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
-import { axiosSecure } from "../../hoooks/useAxiosSecure/useAxiosSecure";
+import useAxiosSecure from "../../hoooks/useAxiosSecure/useAxiosSecure";
+import useCarts from "../../hoooks/useCarts/useCarts";
 
 const ProductCard = ({product}) => {
     // console.log(product);
     const {name, recipe, image, price, _id} = product;
     const {user} = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
+    const [,refetch] = useCarts();
     // console.log('id',_id);s
     const handleOrder = () =>{
         const orderdItem = {
@@ -17,16 +20,17 @@ const ProductCard = ({product}) => {
             price
         }
         // console.log(orderdItem);
-        axiosSecure.post('carts',orderdItem)
+        axiosSecure.post('/carts',orderdItem)
         .then(res=>{
             if(res.data.insertedId){
                 Swal.fire({
-                    position: "top-end",
+                    position: "top-center",
                     icon: "success",
                     title: `Successfully add the ${name}`,
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  refetch();
             }
         })
     }
