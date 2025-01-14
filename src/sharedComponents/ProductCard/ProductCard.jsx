@@ -1,5 +1,35 @@
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
+import { axiosSecure } from "../../hoooks/useAxiosSecure/useAxiosSecure";
+
 const ProductCard = ({product}) => {
-    const {name, recipe, image, price} = product;
+    // console.log(product);
+    const {name, recipe, image, price, _id} = product;
+    const {user} = useContext(AuthContext);
+    // console.log('id',_id);s
+    const handleOrder = () =>{
+        const orderdItem = {
+            userEmail: user.email,
+            orderdItemId: _id,
+            name,
+            image,
+            price
+        }
+        // console.log(orderdItem);
+        axiosSecure.post('carts',orderdItem)
+        .then(res=>{
+            if(res.data.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Successfully add the ${name}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        })
+    }
     return (
         <div className="space-y-3 rounded-xl bg-white p-4 shadow-lg ">
             <div className="relative flex h-48 w-full justify-center lg:h-[260px]">
@@ -15,7 +45,7 @@ const ProductCard = ({product}) => {
             </div>
             <div className="flex flex-wrap items-center justify-between gap-6 text-sm md:text-base">
                 
-                <button className="rounded-lg bg-orange-600 text-black px-4 py-2 font-semibold  duration-300 hover:scale-95 hover:bg-gray-600">Add to Cart</button>
+                <button onClick={handleOrder} className="rounded-lg bg-orange-600 text-black px-4 py-2 font-semibold  duration-300 hover:scale-95 hover:bg-gray-600">Add to Cart</button>
             </div>
         </div>
     )

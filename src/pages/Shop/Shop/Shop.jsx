@@ -21,7 +21,7 @@ const Shop = () => {
     const drinks = menu.filter(temp => temp.category === 'drinks');
     const offered = menu.filter(temp => temp.category === 'offered');
     return (
-        <div>
+        <div className="mb-10">
             <Helmet>
                 <title>Pizzarant | Order</title>
             </Helmet>
