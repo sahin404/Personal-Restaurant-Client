@@ -1,5 +1,4 @@
 import { FaCalendar, FaHome } from "react-icons/fa"
-import { FaCartShopping } from "react-icons/fa6"
 import { MdOutlineHomeWork } from "react-icons/md"
 import { NavLink, Outlet } from "react-router-dom"
 
@@ -22,7 +21,7 @@ const Dashboard = () => {
                         <FaCalendar />
                         Reservation
                     </NavLink></li>
-                    <hr className="mt-5" />
+                    <div className="divider"></div>
                     <li><NavLink to="/">
                         <FaHome></FaHome>
                         Go to Home
@@ -30,7 +29,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="flex-1">
+            <div className="flex-1 mt-10">
                 <Outlet></Outlet>
             </div>
         </div>

@@ -17,7 +17,7 @@ const NavBar = () => {
         <li><NavLink to="/shop/offered">Our Shop</NavLink></li>
         {user && <>
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-            <li><NavLink to="/banner">
+            <li><NavLink to="/dashboard/carts">
                 <div className="relative w-fit">
                     <IoCartOutline className="text-3xl" />
                     <span className="absolute -right-1 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-center text-[10px] text-white">{cart.length}</span>
