@@ -3,13 +3,14 @@ import {
 } from "react-router-dom";
 import Main from "../Layout/Main";
 import ContactUs from "../pages/ContactUs/ContactUs";
-import Dashboard from "../pages/Dashboard/Dashboard";
 
 import Home from "../pages/Home/Home/Home";
 import Menu from "../pages/Menu/Menu/Menu";
 import Shop from "../pages/Shop/Shop/Shop";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
+import Dashboard from "../Layout/Dashboard";
+import Carts from "../pages/Dashboard/Cart/Carts";
 
 
 export const router = createBrowserRouter([
@@ -47,4 +48,14 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path:'/dashboard',
+        element:<Dashboard></Dashboard>,
+        children:[
+            {
+                path:'carts',
+                element:<Carts></Carts>
+            }
+        ]
+    }
 ]);

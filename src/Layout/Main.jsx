@@ -4,7 +4,7 @@ import Footer from "../sharedComponents/Footer/Footer";
 
 const Main = () => {
   const location = useLocation();
-  const excludedRoutes = ["/login", "/signup"]; // Routes where NavBar and Footer should not appear
+  const excludedRoutes = ["/login", "/signup", '/dashboard']; // Routes where NavBar and Footer should not appear
   const isExcludedRoute = excludedRoutes.includes(location.pathname);
 
   return (
