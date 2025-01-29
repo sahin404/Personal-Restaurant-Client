@@ -11,6 +11,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Carts from "../pages/Dashboard/Cart/Carts";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path:'carts',
                 element:<Carts></Carts>
+            },
+            {
+                path:'allUsers',
+                element: <AllUsers></AllUsers>
             }
         ]
     }

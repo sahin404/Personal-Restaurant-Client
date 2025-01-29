@@ -2,15 +2,17 @@ import { Link, useNavigate } from "react-router-dom";
 import loginImg from '../../assets/others/authentication2.png';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hoooks/useAxiosPublic/useAxiosPublic";
 
 const SignUp = () => {
     const { signUp, logOut, updatePro } = useContext(AuthContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const handleForm = (e) => {
         e.preventDefault();
@@ -22,16 +24,28 @@ const SignUp = () => {
 
         signUp(email, password)
             .then(() => {
-                logOut();
-                Swal.fire({
-                    position: "top-center",
-                    icon: "success",
-                    title: "Your Account has been ceate succesfully!",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-                updatePro(name);
-                navigate('/login');
+
+                const userInfo = {
+                    name,
+                    email
+                }
+
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            logOut();
+                            Swal.fire({
+                                position: "top-center",
+                                icon: "success",
+                                title: "Your Account has been ceate succesfully!",
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                            updatePro(name);
+                            navigate('/login');
+                        }
+                    })
+
             })
             .catch(() => {
                 setError("Invalid Username or Password. Try Again!");
