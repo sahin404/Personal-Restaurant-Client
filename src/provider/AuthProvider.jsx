@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { createContext } from "react"
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth"
 import { app } from "../firebase/firebase.config";
+import useAxiosPublic from "../hoooks/useAxiosPublic/useAxiosPublic";
 
 const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+    const axiosPublic = useAxiosPublic();
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -41,13 +43,25 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             if (currentUser) {
                 setLoading(false);
+                const user = {email: currentUser.email};
+                // If user Exists then set the token into locale storage
+                axiosPublic.post('/jwt', user)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token', res.data.token);
+                    }
+                   
+                })
             }
-            // console.log('curreent',currentUser);
+            else{
+                //if user logout then clean the locale storage token
+                localStorage.removeItem('access-token');
+            }
         })
         return () => {
             return unSubscribe();
         }
-    }, [])
+    }, [axiosPublic])
 
 
     const info = {

@@ -1,9 +1,10 @@
 import { FaCalendar, FaHome, FaUser } from "react-icons/fa"
 import { MdOutlineHomeWork } from "react-icons/md"
 import { NavLink, Outlet } from "react-router-dom"
+import useAdmin from "../hoooks/useAdmin/useAdmin";
 
 const Dashboard = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className="flex gap-10">
             <div className="bg-[#D1A054] w-64 min-h-screen " >

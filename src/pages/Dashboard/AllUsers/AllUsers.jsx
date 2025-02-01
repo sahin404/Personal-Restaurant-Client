@@ -28,20 +28,48 @@ const AllUsers = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/users/${user._id}`) // Fixed URL parameter format
                     .then(res => {
-                       if(res.data.deletedCount>0){
-                        refetch();
-                        Swal.fire({
-                        title: "Deleted!",
-                        text: "This user account has been deleted.",
-                        icon: "success"
-                        });
-                       }
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "This user account has been deleted.",
+                                icon: "success"
+                            });
+                        }
                     });
             }
         });
 
 
 
+    }
+
+
+    const handleAdmin = user => {
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/admin/${user._id}`)
+                    .then(res => {
+                        // console.log(res.data);
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "This user account has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
     }
 
 
@@ -70,7 +98,11 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button className="btn btn-outline"><FaUser></FaUser></button>
+                                    {
+                                        user.role === 'admin' ? 'admin' :
+                                            <button onClick={() => handleAdmin(user)} className="btn btn-outline"><FaUser></FaUser></button>
+                                    }
+
                                 </td>
                                 <td>
                                     <button onClick={() => handleDelete(user)} className="btn"><FaDeleteLeft></FaDeleteLeft></button>
